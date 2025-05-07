@@ -58,9 +58,9 @@ const Navbar = () => {
               <Link to="/services" className={`py-2 font-medium text-gray-800 hover:text-blue-600 ${isActive('/services') ? 'border-b-2 border-blue-400' : ''}`}>
                 Services
               </Link>
-              <Link to="/info" className={`py-2 font-medium text-gray-800 hover:text-blue-600 ${isActive('/info') ? 'border-b-2 border-blue-400' : ''}`}>
+              {/* <Link to="/info" className={`py-2 font-medium text-gray-800 hover:text-blue-600 ${isActive('/info') ? 'border-b-2 border-blue-400' : ''}`}>
                 Testinomials
-              </Link>
+              </Link> */}
               <Link to="/contact" className={`py-2 font-medium text-gray-800 hover:text-blue-600 ${isActive('/contact') ? 'border-b-2 border-blue-400' : ''}`}>
                 Contact
               </Link>

@@ -1,5 +1,7 @@
 // src/components/Footer.jsx
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.jpg';
+
 
 const Footer = () => {
   return (
@@ -7,10 +9,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">YOUR LOGO</h3>
-            <p className="text-gray-400">
-              Creating beautiful static websites with modern technologies.
-            </p>
+          <div> <img src={logo} alt="Logo" className="h-20 w-auto mb-4" /> </div>           
           </div>
           
           <div>
@@ -18,34 +17,34 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/" className="text-gray-400 hover:text-white">Home</Link></li>
               <li><Link to="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-              <li><Link to="/work" className="text-gray-400 hover:text-white">Our Work</Link></li>
-              <li><Link to="/info" className="text-gray-400 hover:text-white">Information</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-white">Our Work</Link></li>
+              <li><Link to="/contact" className="text-gray-400 hover:text-white">Contact Us</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
-              <li><Link to="/services/web-design" className="text-gray-400 hover:text-white">Web Design</Link></li>
-              <li><Link to="/services/static-sites" className="text-gray-400 hover:text-white">Static Websites</Link></li>
-              <li><Link to="/services/react-development" className="text-gray-400 hover:text-white">React Development</Link></li>
-              <li><Link to="/services/responsive-design" className="text-gray-400 hover:text-white">Responsive Design</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-white">Corporate Food Services</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-white">Cab & Transportation Services</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-white">Complete Employee Support Solutions</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-white">Cleaning</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <address className="text-gray-400 not-italic">
-              <p>123 Web Street</p>
-              <p>Digital City, DC 12345</p>
-              <p className="mt-3">Email: info@yourlogo.com</p>
-              <p>Phone: (123) 456-7890</p>
+              <p>644, 6th Floor, Gaur City Centre<br/> Sector 4, Bisrakh</p>
+              <p>Gautam Buddha Nagar <br/>201306, Uttar Pradesh</p>
+              <p className="mt-3">Email: info@vednex.com</p>
+              <p>Phone: +91-8210816169</p>
             </address>
           </div>
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400">© 2025 YOUR LOGO. All rights reserved.</p>
+          <p className="text-gray-400">© 2025 Vednex Corporate Solution. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="#" className="text-gray-400 hover:text-white">
               <span className="sr-only">Facebook</span>

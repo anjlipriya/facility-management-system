@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ChefHat, Car, Briefcase } from 'lucide-react';
+import { ChefHat, Car, Briefcase, UtensilsCrossed, Sparkles, Shirt } from 'lucide-react';
 
 function Services() {
   // Animation effect when component mounts
@@ -16,29 +16,61 @@ function Services() {
   const services = [
     {
       icon: <ChefHat size={48} />,
-      title: "Corporate Food Services",
+      title: "Corporate Catering Excellence",
       items: [
-        "Daily Meal Plans: Fresh, hygienic, and delicious meals delivered right to your office.",
-        "Custom Catering: Tailored menus for meetings, events, and special occasions.",
-        "Healthy Options: Nutritious meal plans that promote employee wellness."
+        "Tailored meal plans for corporate preferences",
+        "On-site & off-site catering for all scales",
+        "Certified kitchen staff & food safety standards",
+        "Daily corporate meals, events, and special menus"
+      ]
+    },
+    {
+      icon: <UtensilsCrossed size={48} />,
+      title: "Complete Food Management",
+      items: [
+        "Pantry management & cafeteria operations",
+        "Quality-controlled ingredient sourcing",
+        "Balanced, customizable menu planning",
+        "FSSAI-compliant processes"
       ]
     },
     {
       icon: <Car size={48} />,
-      title: "Cab & Transportation Services",
+      title: "Employee Transportation Solutions",
       items: [
-        "Employee Commute Solutions: Safe, reliable, and punctual cab services for pick-up and drop-off.",
-        "Event Transport: Special arrangements for corporate events, outings, and conferences.",
-        "24/7 Support: Round-the-clock transportation assistance for shift workers and late-night teams."
+        "GPS-enabled, company-assigned vehicles",
+        "Trained drivers & real-time tracking",
+        "Route optimization for timely pickups/drop-offs",
+        "Scalable fleet for different company sizes"
+      ]
+    },
+    {
+      icon: <Sparkles size={48} />,
+      title: "Professional Cleaning & Housekeeping",
+      items: [
+        "Daily deep-cleaning routines",
+        "Restroom sanitation & waste management",
+        "Trained staff with eco-friendly products",
+        "Disinfection services & floor care"
+      ]
+    },
+    {
+      icon: <Shirt size={48} />,
+      title: "Commercial Laundry & Garment Care",
+      items: [
+        "Uniform and linen washing",
+        "Industrial-grade cleaning equipment",
+        "Pickup, washing, ironing & delivery",
+        "Customized schedules for convenience"
       ]
     },
     {
       icon: <Briefcase size={48} />,
       title: "Complete Employee Support Solutions",
       items: [
-        "Onsite Assistance: Coordinators and service desks for daily employee needs.",
-        "Custom Packages: Solutions tailored to your company's specific requirements and workforce size.",
-        "Technology-Enabled Management: Easy tracking, booking, and reporting through digital tools."
+        "Onsite Assistance: Coordinators and service desks for daily employee needs",
+        "Custom Packages: Solutions tailored to your company's specific requirements",
+        "Technology-Enabled Management: Easy tracking, booking, and reporting through digital tools"
       ]
     }
   ];
@@ -48,7 +80,7 @@ function Services() {
       <div className="max-w-6xl mx-auto px-4">
         {/* Header Section with Animation */}
         <div className="text-center mb-16 opacity-0 animate-fade-in">
-          <h1 className="text-5xl font-bold text-gray-800 mb-4">SERVICES</h1>
+          <h1 className="text-5xl font-bold text-gray-800 mb-4">OUR PREMIER SERVICES</h1>
           <div className="h-1 w-20 bg-blue-600 mx-auto mb-6"></div>
           <p className="text-xl text-gray-700 max-w-2xl mx-auto">
             At Vednex, we offer a complete range of solutions to support corporate employees with their daily needs, 
