@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Building2, Coffee, Car, Users, Star, MessageCircle, Clock, Settings, Heart, Check } from 'lucide-react';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -12,8 +13,10 @@ function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
   const [activeTab, setActiveTab] = useState('form');
   const [activeIndex, setActiveIndex] = useState(null);
+  
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
@@ -29,7 +32,7 @@ function Contact() {
     },
     {
       question: 'Where are our offices located?',
-      answer: 'We have offices in San Francisco, CA. For more details, check the office locations tab.'
+      answer: 'We have offices in Gaur city Gautam Buddha Nagar. For more details, check the office locations tab.'
     },
     {
       question: 'Do you offer remote services?',
@@ -41,6 +44,22 @@ function Contact() {
   useEffect(() => {
     // Trigger entrance animation after component mounts
     setAnimateIn(true);
+    
+    // Load EmailJS SDK
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    script.onload = () => {
+      // Initialize EmailJS with your User ID
+      // Replace 'YOUR_USER_ID' with your actual EmailJS user ID
+      window.emailjs.init('YOUR_USER_ID');
+    };
+    
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
   const handleChange = (e) => {
@@ -50,23 +69,59 @@ function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const sendEmail = async (templateParams) => {
+    try {
+      // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with  actual EmailJS service and template IDs
+      const response = await window.emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        templateParams
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate form submission
-    setTimeout(() => {
+    setSubmitError(null);
+  
+    try {
+      // Commented out email sending for now
+      /*
+      const templateParams = {
+        to_email: 'abc@gmail.com',
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+      };
+  
+      await sendEmail(templateParams);
       console.log('Form submitted:', formData);
+      */
+  
+      // Show toast message instead
+      toast.success("Thank you for contacting us.. We'll get back to you soon !!");
+  
       setIsSubmitting(false);
       setIsSubmitted(true);
-
+  
       // Reset form after 3 seconds
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       }, 3000);
-    }, 1500);
+    } catch (error) {
+      console.error('Error in form submission:', error);
+      setIsSubmitting(false);
+      setSubmitError('Something went wrong. Please try again later.');
+    }
   };
+  
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -123,7 +178,7 @@ function Contact() {
                         </div>
                         <div>
                           <p className="font-medium text-black">Phone</p>
-                          <p className="text-sm opacity-80">(555) 123-4567</p>
+                          <p className="text-sm opacity-80">+91-8210816159</p>
                         </div>
                       </div>
 
@@ -135,7 +190,7 @@ function Contact() {
                         </div>
                         <div>
                           <p className="font-medium  text-black">Email</p>
-                          <p className="text-sm opacity-80">contact@company.com</p>
+                          <p className="text-sm opacity-80">info@vednex.com</p>
                         </div>
                       </div>
 
@@ -148,13 +203,13 @@ function Contact() {
                         </div>
                         <div>
                           <p className="font-medium  text-black">Office</p>
-                          <p className="text-sm opacity-80">123 Business Ave, Suite 200</p>
-                          <p className="text-sm opacity-80">San Francisco, CA 94107</p>
+                          <p className="text-sm opacity-80"> 644, 6th Floor Gaur City Centre <br/>Sector 4, Bisrakh</p>
+                          <p className="text-sm opacity-80">Gautam Buddha Nagar <br/>201306, Uttar Pradesh</p>
                         </div>
                       </div>
                     </div>
                   </div>
-
+                 
                   {/* Social Media */}
                   <div className="bg-blue-900 bg-opacity-40 p-6 rounded-xl">
                     <h3 className="text-xl font-semibold text-white mb-4">Connect With Us</h3>
@@ -187,6 +242,11 @@ function Contact() {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      {submitError && (
+                        <div className="bg-red-600 bg-opacity-20 border border-red-500 text-red-100 p-4 rounded-xl text-center mb-4">
+                          <p>{submitError}</p>
+                        </div>
+                      )}
                       <div className="grid md:grid-cols-2 gap-6">
                         <div className="relative">
                           <input
@@ -316,15 +376,15 @@ function Contact() {
                     <Building2 size={80} />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 text-center">San Francisco</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-center">644, 6th Floor, Gaur City Centre, Sector 4, Bisrakh</h3>
                     <p className="text-white-200 mb-4 text-center">
-                      123 Business Ave, Suite 200<br />San Francisco, CA 94107
+                     Gautam Buddha Nagar, 201306, Uttar Pradesh
                     </p>
                     <div className="flex items-center justify-center text-white-300">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      <span>(555) 123-4567</span>
+                      <span>+91-8210816159</span>
                     </div>
                   </div>
                 </div>
@@ -333,16 +393,12 @@ function Contact() {
                 {/* Business Hours Section */}
                 <div className="mt-10 p-6 bg-blue-900 bg-opacity-40 rounded-xl">
                   <h3 className="text-xl font-semibold mb-4">Business Hours</h3>
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid md:grid-cols-1 gap-4">
                     <table className="w-full text-white-200">
                       <tbody>
                         <tr className="border-b border-blue-800">
-                          <td className="py-2 font-medium">Monday - Friday</td>
-                          <td className="py-2">9:00 AM - 6:00 PM</td>
-                        </tr>
-                        <tr className="border-b border-blue-800">
-                          <td className="py-2 font-medium">Saturday</td>
-                          <td className="py-2">10:00 AM - 4:00 PM</td>
+                          <td className="py-2 font-medium">Monday - Saturday</td>
+                          <td className="py-2">9:00 AM - 7:00 PM</td>
                         </tr>
                         <tr>
                           <td className="py-2 font-medium">Sunday</td>
@@ -351,12 +407,12 @@ function Contact() {
                       </tbody>
                     </table>
 
-                    <div>
+                    {/* <div>
                       <p className="text-white-200 mb-4">Need urgent assistance outside business hours?</p>
                       <a href="#" className="inline-block bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded-lg transition-colors duration-300">
                         Emergency Support
                       </a>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -366,6 +422,8 @@ function Contact() {
 
           </div>
         </div>
+
+        
 
         <div className="p-8 bg-blue-900 bg-opacity-40 rounded-xl">
           <h3 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h3>

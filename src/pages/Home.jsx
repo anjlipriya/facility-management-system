@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import { motion } from 'framer-motion';
-import { ChevronRight, Coffee, Car, Users, Star, MessageCircle, Clock, Settings, Heart, Check } from 'lucide-react';
+import { ChevronRight, Coffee, Car, Users, Star, MessageCircle, Clock, Settings, Heart, BrushCleaning } from 'lucide-react';
 
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -13,9 +13,9 @@ const Home = () => {
   }, []);
 
   const serviceData = [
-    { icon: <Coffee />, title: "Office Meals", description: "Delicious meals delivered to your workplace" },
-    { icon: <Car />, title: "On-Demand Cabs", description: "Reliable transportation whenever you need it" },
-    { icon: <Users />, title: "Employee Support", description: "Comprehensive assistance for your team" },
+    { icon: <Coffee />, title: "Corporate Catering & Food Management", description: "Customized meal plans, on-site/off-site catering, and full-service food ecosystem management." },
+    { icon: <BrushCleaning />, title: "Professional Cleaning & Housekeeping", description: "Comprehensive cleaning solutions to maintain a spotless and welcoming workplace." },
+    { icon: <Users />, title: "Employee Transportation & Commercial Laundry", description: "Efficient transportation services and smart garment care with tailored schedules and eco-friendly solutions." },
   ];
 
 
@@ -36,31 +36,34 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="md:w-1/2 mb-10 md:mb-0 z-10"
           >
-            <motion.h1
-              initial={{ y: -20, opacity: 0 }}
-              animate={isLoaded ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-5xl font-bold text-gray-900 leading-tight mb-6"
-            >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">TEST</span> <br />
-              Web Design
-            </motion.h1>
-            <motion.p
-              initial={{ y: 20, opacity: 0 }}
-              animate={isLoaded ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="text-lg text-gray-600 mb-8 max-w-lg"
-            >
-              Fueling Workdays. Simplifying Life.
-              <br /><br />
-              We're here to make corporate life easier — and better. From delicious meals to on-demand cabs and full employee support services, we take care of the everyday essentials, so your team can stay focused on what really matters.
-            </motion.p>
+   <motion.h1
+  initial={{ y: -20, opacity: 0 }}
+  animate={isLoaded ? { y: 0, opacity: 1 } : {}}
+  transition={{ duration: 0.5, delay: 0.4 }}
+  className="text-5xl font-bold text-gray-900 leading-tight mb-6"
+>
+  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+    Integrated Facility Management
+  </span>
+  <br />
+  That Elevates Your Business
+</motion.h1>
+
+<motion.p
+  initial={{ y: 20, opacity: 0 }}
+  animate={isLoaded ? { y: 0, opacity: 1 } : {}}
+  transition={{ duration: 0.5, delay: 0.6 }}
+  className="text-lg text-gray-600 mb-8 max-w-lg"
+>
+  At Vednex, we go beyond facility management — we improve your workplace, enhance employee comfort, and streamline daily operations. From fresh meals and spotless offices to safe transport and laundry care, we handle it all under one roof so you can focus on growth.
+</motion.p>
+
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={isLoaded ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
-              <Button to="/work" variant="primary" className="flex items-center group">
+              <Button to="/about" variant="primary" className="flex items-center group">
                 <span>MORE INFO</span>
                 <ChevronRight className="ml-2 transform group-hover:translate-x-1 transition-transform" size={16} />
               </Button>
@@ -264,75 +267,63 @@ const Home = () => {
 
       {/* Why Choose Us Section - Feature List with Image */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, delay: 2 }}
-        className="bg-white py-16"
-      >
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-10 md:mb-0">
-              <motion.img
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isLoaded ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.8, delay: 2.2 }}
-                src="/api/placeholder/500/400"
-                alt="Team collaborating"
-                className="rounded-lg shadow-lg mx-auto"
-              />
-            </div>
-            <div className="md:w-1/2 md:pl-12">
-              <motion.ul className="space-y-6">
-                <motion.li
-                  initial={{ x: 50, opacity: 0 }}
-                  animate={isLoaded ? { x: 0, opacity: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 2.2 }}
-                  className="flex items-start"
-                >
-                  <div className="bg-blue-100 p-2 rounded-full mr-4 text-blue-600 flex-shrink-0">
-                    <Clock size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Reliable and Timely Services</h3>
-                    <p className="text-gray-600">Count on us for punctual delivery and consistent service quality, every single time.</p>
-                  </div>
-                </motion.li>
+      initial={{ opacity: 0, y: 50 }}
+      animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay: 2 }}
+      className="bg-white py-16"
+    >
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
+        <div className="max-w-3xl mx-auto">
+          <motion.ul className="space-y-8">
+            <motion.li
+              initial={{ x: 50, opacity: 0 }}
+              animate={isLoaded ? { x: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 2.2 }}
+              className="flex items-start"
+            >
+              <div className="bg-blue-100 p-3 rounded-full mr-5 text-blue-600 flex-shrink-0">
+                <Clock size={28} />
+              </div>
+              <div>
+                <h3 className="text-2xl font-semibold mb-2">Reliable and Timely Services</h3>
+                <p className="text-gray-600 text-lg">Count on us for punctual delivery and consistent service quality, every single time.</p>
+              </div>
+            </motion.li>
 
-                <motion.li
-                  initial={{ x: 50, opacity: 0 }}
-                  animate={isLoaded ? { x: 0, opacity: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 2.4 }}
-                  className="flex items-start"
-                >
-                  <div className="bg-blue-100 p-2 rounded-full mr-4 text-blue-600 flex-shrink-0">
-                    <Settings size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Customized Solutions</h3>
-                    <p className="text-gray-600">Tailored specifically to meet your company's unique needs and challenges.</p>
-                  </div>
-                </motion.li>
+            <motion.li
+              initial={{ x: 50, opacity: 0 }}
+              animate={isLoaded ? { x: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 2.4 }}
+              className="flex items-start"
+            >
+              <div className="bg-blue-100 p-3 rounded-full mr-5 text-blue-600 flex-shrink-0">
+                <Settings size={28} />
+              </div>
+              <div>
+                <h3 className="text-2xl font-semibold mb-2">Customized Solutions</h3>
+                <p className="text-gray-600 text-lg">Tailored specifically to meet your company's unique needs and challenges.</p>
+              </div>
+            </motion.li>
 
-                <motion.li
-                  initial={{ x: 50, opacity: 0 }}
-                  animate={isLoaded ? { x: 0, opacity: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 2.6 }}
-                  className="flex items-start"
-                >
-                  <div className="bg-blue-100 p-2 rounded-full mr-4 text-blue-600 flex-shrink-0">
-                    <Heart size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Employee-Focused</h3>
-                    <p className="text-gray-600">Prioritizing comfort, convenience, and care for your most valuable asset—your team.</p>
-                  </div>
-                </motion.li>
-              </motion.ul>
-            </div>
-          </div>
+            <motion.li
+              initial={{ x: 50, opacity: 0 }}
+              animate={isLoaded ? { x: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 2.6 }}
+              className="flex items-start"
+            >
+              <div className="bg-blue-100 p-3 rounded-full mr-5 text-blue-600 flex-shrink-0">
+                <Heart size={28} />
+              </div>
+              <div>
+                <h3 className="text-2xl font-semibold mb-2">Employee-Focused</h3>
+                <p className="text-gray-600 text-lg">Prioritizing comfort, convenience, and care for your most valuable asset—your team.</p>
+              </div>
+            </motion.li>
+          </motion.ul>
         </div>
-      </motion.div>
+      </div>
+    </motion.div>
 
       {/* Testimonials - Carousel Style */}
       <motion.div
@@ -441,8 +432,10 @@ const Home = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="bg-blue-600 text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
+          to="/about"
         >
-          Get Started Today
+            
+            <Link to="/contact"> Get Started Today</Link>
         </motion.button>
       </motion.div>
 
