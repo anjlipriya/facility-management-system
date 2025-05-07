@@ -71,7 +71,7 @@ function Contact() {
 
   const sendEmail = async (templateParams) => {
     try {
-      // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual EmailJS service and template IDs
+      // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with  actual EmailJS service and template IDs
       const response = await window.emailjs.send(
         'YOUR_SERVICE_ID',
         'YOUR_TEMPLATE_ID',
