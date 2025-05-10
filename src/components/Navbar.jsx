@@ -116,12 +116,12 @@ const Navbar = () => {
             >
               Services
             </Link>
-            <Link 
+            {/* <Link 
               to="/info" 
               className={`block px-3 py-2 text-base font-medium ${isActive('/info') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}
             >
               Testinomials
-            </Link>
+            </Link> */}
             <Link 
               to="/contact" 
               className={`block px-3 py-2 text-base font-medium ${isActive('/contact') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}

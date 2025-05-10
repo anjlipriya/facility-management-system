@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { ChefHat, Car, Briefcase, UtensilsCrossed, Sparkles, Shirt } from 'lucide-react';
-
+import { motion } from 'framer-motion';
 function Services() {
   // Animation effect when component mounts
   useEffect(() => {
@@ -11,6 +11,7 @@ function Services() {
         card.classList.add('animate-in');
       }, 300 * index);
     });
+    window.scrollTo(0, 0);
   }, []);
 
   const services = [
@@ -91,10 +92,11 @@ function Services() {
         {/* Services Cards Grid */}
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div 
-              key={index} 
-              className="service-card bg-white rounded-lg shadow-lg p-6 transform transition-all duration-500 opacity-0 translate-y-12 hover:shadow-xl"
-            >
+            <motion.div
+            key={index}
+            whileHover={{ y: -10, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+            className="bg-white rounded-lg shadow-md p-6 transition-all duration-300"
+          >
               <div className="text-blue-600 mb-4">{service.icon}</div>
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">{service.title}</h2>
               <ul className="space-y-3">
@@ -105,7 +107,7 @@ function Services() {
                   </li>
                 ))}
               </ul>
-            </div>
+              </motion.div>
           ))}
         </div>
 

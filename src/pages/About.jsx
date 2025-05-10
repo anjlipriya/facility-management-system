@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react';
 
   useEffect(() => {
     setAnimate(true);
+    window.scrollTo(0, 0);
   }, []);
 
   const cards = [
@@ -50,8 +51,8 @@ import { ArrowRight } from 'lucide-react';
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">{card.title}</h2>
               <p className="text-gray-600 flex-grow">{card.content}</p>
               <div className="mt-6 flex items-center text-blue-500 font-medium group cursor-pointer">
-                <span>Learn more</span>
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                {/* <span>Learn more</span> */}
+                {/* <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" /> */}
               </div>
             </div>
           </div>
