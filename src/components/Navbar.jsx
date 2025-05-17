@@ -1,140 +1,80 @@
-// src/components/Navbar.jsx
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../assets/logo.jpg';
-
+import logo from '../assets/logo1.png';
+import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-  
-  // Helper function to check if a link is active
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
   const isActive = (path) => {
-    // For the home path, only match exact '/'
-    if (path === '/' && location.pathname === '/') {
-      return true;
-    }
-    // For other paths, check if the pathname starts with the path
-    // but avoid matching partial paths (e.g. /about shouldn't match /about-us)
-    if (path !== '/') {
-      const pathWithSlash = path.endsWith('/') ? path : `${path}/`;
-      const locationWithSlash = location.pathname.endsWith('/') 
-        ? location.pathname 
-        : `${location.pathname}/`;
-        
-      return locationWithSlash === pathWithSlash || location.pathname === path;
-    }
-    return false;
+    if (path === '/' && location.pathname === '/') return true;
+    const pathWithSlash = path.endsWith('/') ? path : `${path}/`;
+    const locationWithSlash = location.pathname.endsWith('/') ? location.pathname : `${location.pathname}/`;
+    return locationWithSlash === pathWithSlash || location.pathname === path;
   };
+
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Contact', path: '/contact' },
+  ];
 
   return (
-    <>
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 shadow-md transition-all">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+        {/* Logo and Brand */}
+        <Link to="/" className="flex items-center space-x-2">
+          <img src={logo} alt="Logo" className="h-12 w-auto rounded-xl shadow-sm" />
+          <span className="text-xl font-semibold text-gray-800 hover:text-blue-600 transition">Vednex Corporate Solution</span>
+        </Link>
 
-      {/* Main light navigation */}
-      <div className="bg-white shadow-sm">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-2">
-            {/* Logo */}
-            <img 
-           src={logo} 
-           alt="Company Logo" 
-           className="h-20 w-50 object-contain"
-          />
+        {/* Desktop Links */}
+        <nav className="hidden md:flex space-x-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              className={`relative font-medium text-gray-700 hover:text-blue-600 transition-transform hover:scale-105
+                ${isActive(link.path) ? 'text-blue-600 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:bg-blue-500 after:rounded-full' : ''}`}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
 
-
-            
-            {/* Desktop Navigation - hidden on mobile */}
-            <div className="hidden md:flex space-x-8">
-              <Link to="/" className={`py-2 font-medium text-gray-800 hover:text-blue-600 ${isActive('/') ? 'border-b-2 border-blue-400' : ''}`}>
-                Home
-              </Link>
-              <Link to="/about" className={`py-2 font-medium text-gray-800 hover:text-blue-600 ${isActive('/about') ? 'border-b-2 border-blue-400' : ''}`}>
-                About 
-              </Link>
-              <Link to="/services" className={`py-2 font-medium text-gray-800 hover:text-blue-600 ${isActive('/services') ? 'border-b-2 border-blue-400' : ''}`}>
-                Services
-              </Link>
-              {/* <Link to="/info" className={`py-2 font-medium text-gray-800 hover:text-blue-600 ${isActive('/info') ? 'border-b-2 border-blue-400' : ''}`}>
-                Testinomials
-              </Link> */}
-              <Link to="/contact" className={`py-2 font-medium text-gray-800 hover:text-blue-600 ${isActive('/contact') ? 'border-b-2 border-blue-400' : ''}`}>
-                Contact
-              </Link>
-            </div>
-            
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={toggleMenu}
-                className="text-gray-700 hover:text-blue-600 focus:outline-none"
-              >
-                <svg
-                  className={`${isOpen ? 'hidden' : 'block'} h-6 w-6`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                <svg
-                  className={`${isOpen ? 'block' : 'hidden'} h-6 w-6`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        
-        {/* Mobile menu */}
-        <div className={`${isOpen ? 'block' : 'hidden'} md:hidden border-t border-gray-200`}>
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            <Link 
-              to="/" 
-              className={`block px-3 py-2 text-base font-medium ${isActive('/') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}
-            >
-              Home
-            </Link>
-            <Link 
-              to="/about" 
-              className={`block px-3 py-2 text-base font-medium ${isActive('/about') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}
-            >
-              About
-            </Link>
-            <Link 
-              to="/services" 
-              className={`block px-3 py-2 text-base font-medium ${isActive('/services') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}
-            >
-              Services
-            </Link>
-            {/* <Link 
-              to="/info" 
-              className={`block px-3 py-2 text-base font-medium ${isActive('/info') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}
-            >
-              Testinomials
-            </Link> */}
-            <Link 
-              to="/contact" 
-              className={`block px-3 py-2 text-base font-medium ${isActive('/contact') ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:bg-gray-100'}`}
-            >
-              Contact
-            </Link>
-          </div>
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <button onClick={toggleMenu} className="text-gray-700 hover:text-blue-600 transition">
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
         </div>
       </div>
-      
-      {/* Secondary navigation with breadcrumbs */}
-    
-    </>
+
+      {/* Mobile Dropdown */}
+      <div
+        className={`md:hidden bg-white shadow-inner transition-all duration-300 ease-in-out overflow-hidden ${
+          isOpen ? 'max-h-60' : 'max-h-0'
+        }`}
+      >
+        <div className="flex flex-col px-4 py-2 space-y-2">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              onClick={() => setIsOpen(false)}
+              className={`block rounded-md px-3 py-2 text-gray-700 hover:bg-blue-100 hover:text-blue-600 transition
+                ${isActive(link.path) ? 'bg-blue-100 text-blue-600 font-semibold' : ''}`}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </header>
   );
 };
 
