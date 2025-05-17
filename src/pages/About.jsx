@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Users, Briefcase, Target, Heart } from 'lucide-react';
+import { ArrowRight, Users, Briefcase, Target, Heart, Mail, Linkedin } from 'lucide-react';
 import about from '../assets/AboutUs.jpg';
 import team from '../assets/Team.jpg';
+// You'll need to import leader images
+import founderImg from '../assets/founder.jpg'; // Add these images to your assets folder
+import cofounderImg from '../assets/cofounder.jpg';
+import mdImg from '../assets/md.jpg';
 import { useNavigate } from 'react-router-dom';
 
 function About() {
   const [animate, setAnimate] = useState(false);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  
   useEffect(() => {
     setAnimate(true);
     window.scrollTo(0, 0);
@@ -42,12 +47,49 @@ function About() {
     "Excellence", 
     "Integrity"
   ];
-  const handleService=()=>{
-    navigate("/services")
-  }
-  const navigateContact=()=>{
-    navigate("/contact")
-  }
+  
+  // Leadership team data
+  const leadershipTeam = [
+    {
+      name: "Sarah Johnson",
+      position: "Founder & CEO",
+      bio: "With over 15 years of experience in corporate services and hospitality management, Sarah founded Vednex with a vision to transform workplace experiences. Her innovative approach and passionate leadership have established new standards of excellence in corporate service solutions.",
+      image: founderImg,
+      social: {
+        linkedin: "",
+        email: ""
+      }
+    },
+    {
+      name: "Michael Chen",
+      position: "Co-Founder & CTO",
+      bio: "Michael brings technical expertise from his background in logistics and operations technology. He oversees Vednex's digital infrastructure, ensuring seamless service delivery and developing innovative solutions that keep us at the cutting edge of the industry.",
+      image: cofounderImg,
+      social: {
+        linkedin: "",
+        email: ""
+      }
+    },
+    {
+      name: "Priya Patel",
+      position: "Managing Director",
+      bio: "Priya's strategic leadership has been instrumental in Vednex's rapid growth across multiple markets. With extensive experience in corporate client relationships, she directs our operational excellence initiatives and builds lasting partnerships with enterprise clients.",
+      image: mdImg,
+      social: {
+        linkedin: "",
+        email: ""
+      }
+    }
+  ];
+  
+  const handleService = () => {
+    navigate("/services");
+  };
+  
+  const navigateContact = () => {
+    navigate("/contact");
+  };
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 mt-8">
       {/* Hero Section with Image */}
@@ -89,9 +131,7 @@ function About() {
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Who We Are</h2>
             <div className="h-1 w-24 bg-blue-500 mx-auto"></div>
             <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-            Founded with the vision to bridge the gap between quality service and client satisfaction, Vednex Corporate Solutions has grown into a trusted name in the service industry. Our commitment to professionalism and continuous improvement drives us to deliver exceptional results tailored to the unique needs of each client.
-
-Our team comprises highly skilled professionals, industry experts, and passionate service providers who understand the nuances of facility management and event hospitality. We invest heavily in training, technology, and process optimization to ensure consistent quality, efficiency, and safety.
+              Founded with the vision to bridge the gap between quality service and client satisfaction, Vednex Corporate Solutions has grown into a trusted name in the service industry. Our commitment to professionalism and continuous improvement drives us to deliver exceptional results tailored to the unique needs of each client.
             </p>
           </div>    
           
@@ -114,7 +154,79 @@ Our team comprises highly skilled professionals, industry experts, and passionat
                   </div>
                   <div className="h-1 w-16 bg-blue-500 rounded-full mb-6"></div>
                   <p className="text-gray-600 flex-grow">{card.content}</p>
-                 
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      {/* Leadership Team Section - NEW with circular images */}
+      <div className="py-20 bg-gradient-to-br from-blue-100 via-blue-800 to-blue-100 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={`text-center mb-16 transition-all duration-1000 transform ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <h2 className="text-4xl font-bold mb-4">Our Visionary Leaders</h2>
+            <div className="h-1 w-24 bg-yellow-300 mx-auto"></div>
+            <p className="mt-6 text-xl max-w-3xl mx-auto text-blue-100">
+              Meet the innovative minds driving Vednex's mission to transform corporate experiences.
+            </p>
+          </div>
+          
+          <div className="max-w-6xl mx-auto">
+            {leadershipTeam.map((leader, index) => (
+              <div
+                key={index}
+                className={`mb-20 last:mb-0 transition-all duration-1000 transform ${
+                  animate ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+                }`}
+                style={{ transitionDelay: `${index * 200 + 400}ms` }}
+              >
+                <div className={`flex flex-col ${index % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 md:gap-16`}>
+                  {/* Circular Image */}
+                  <div className="mb-8 md:mb-0 md:w-1/3 flex justify-center">
+                    <div className="relative">
+                      <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-white-300 shadow-xl transform transition-transform duration-500 hover:scale-105">
+                        <img 
+                          src={leader.image} 
+                          alt={leader.name} 
+                          className="w-full h-full object-cover" 
+                        />
+                      </div>
+                      
+                      {/* Decorative elements */}
+                      <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-blue-500 opacity-20"></div>
+                      <div className="absolute -bottom-4 -right-4 w-12 h-12 rounded-full bg-blue-300 opacity-30"></div>
+                      
+                      {/* Social icons floating above the image */}
+                      <div className="absolute top-0 right-0 bg-blue-300 rounded-full p-3 shadow-lg transform -translate-y-1/4 translate-x-1/4">
+                        <Mail className="h-5 w-5 text-blue-800" />
+                      </div>
+                      <div className="absolute bottom-0 left-0 bg-blue-300 rounded-full p-3 shadow-lg transform translate-y-1/4 -translate-x-1/4">
+                        <Linkedin className="h-5 w-5 text-blue-800" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="md:w-2/3 text-center md:text-left">
+                    <div className={`bg-blue-800 bg-opacity-50 rounded-3xl p-8 shadow-xl border-l-4 ${index % 2 !== 0 ? 'border-r-4 border-l-0 md:mr-8' : 'md:ml-8'} border-blue-300`}>
+                      <h3 className="text-3xl font-bold mb-1">{leader.name}</h3>
+                      <p className="text-yellow-300 text-xl font-medium mb-4">{leader.position}</p>
+                      <div className="h-1 w-16 bg-white rounded-full mb-6 mx-auto md:mx-0"></div>
+                      <p className="text-lg leading-relaxed">{leader.bio}</p>
+                      
+                      <div className="mt-6 flex space-x-4 justify-center md:justify-start">
+                        <a href={`mailto:${leader.social.email}`} className="bg-blue-700 hover:bg-blue-600 p-2 rounded text-white transition-colors duration-300 flex items-center gap-2">
+                          <Mail className="h-4 w-4" />
+                          <span>Connect</span>
+                        </a>
+                        <a href={leader.social.linkedin} className="bg-blue-700 hover:bg-blue-600 p-2 rounded text-white transition-colors duration-300 flex items-center gap-2">
+                          <Linkedin className="h-4 w-4" />
+                          <span>Profile</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -140,7 +252,7 @@ Our team comprises highly skilled professionals, industry experts, and passionat
             <div className="md:w-1/2">
               <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Team Culture</h2>
               <p className="text-lg text-gray-600 mb-8">
-              Our team comprises highly skilled professionals, industry experts, and passionate service providers who understand the nuances of facility management and event hospitality. We invest heavily in training, technology, and process optimization to ensure consistent quality, efficiency, and safety.
+                Our team comprises highly skilled professionals, industry experts, and passionate service providers who understand the nuances of facility management and event hospitality. We invest heavily in training, technology, and process optimization to ensure consistent quality, efficiency, and safety.
               </p>
               
               <div className="grid grid-cols-2 gap-4">
